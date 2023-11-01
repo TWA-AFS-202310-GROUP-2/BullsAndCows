@@ -22,17 +22,20 @@ namespace BullsAndCows
             }
 
             int bulls = 0;
+            int cows = 0;
             for (int i = 0; i < secret.Length; i++)
             {
                 if (guess.IndexOf(secret[i]) == i)
                 {
                     bulls++;
                 }
+                else if (guess.IndexOf(secret[i]) > 0)
+                {
+                    cows++;
+                }
             }
 
-            return $"{bulls}A0B";
+            return $"{bulls}A{cows}B";
         }
-
-        
     }
 }
