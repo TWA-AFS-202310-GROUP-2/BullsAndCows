@@ -24,7 +24,12 @@ namespace BullsAndCows
             // case 5: some of correct digits with correct locations, some with wrong loc, "1345"-"1A2B", except for "3A1B"
             // case 6: correct digits, but some are correct loc, some are not, "1432"-"2A2B"
             // case 6: all wrong, "5678"-"0A0B"
-            throw new NotImplementedException();
+            if (guess.Equals(secret))
+            {
+                return "4A0B";
+            }
+
+            return string.Empty;
         }
     }
 }
