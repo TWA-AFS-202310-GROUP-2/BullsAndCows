@@ -16,7 +16,7 @@ namespace BullsAndCowsTest
         }
 
         [Fact]
-        public void Should_return_4A0B_when_guess_number_and_secret_are_same()
+        public void Should_return_4A0B_when_guess_give_number_and_secret_are_same()
         {
             //given
             string guessNumber = "1234";
@@ -30,6 +30,23 @@ namespace BullsAndCowsTest
 
             //then
             Assert.Equal("4A0B", res);
+        }
+
+        [Fact]
+        public void Should_return_2A0B_when_guess_given_partial_position_and_number_are_right()
+        {
+            //given
+            string guessNumber = "1287";
+
+            //when
+            var mockSecretGenerator = new Mock<SecretGenerator>();
+            mockSecretGenerator.Setup(ms => ms.GenerateSecret()).Returns("1234");
+            var game = new BullsAndCowsGame(mockSecretGenerator.Object);
+
+            var res = game.Guess(guessNumber);
+
+            //then
+            Assert.Equal("2A0B", res);
         }
     }
 }
