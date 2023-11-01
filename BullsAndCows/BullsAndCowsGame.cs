@@ -25,6 +25,7 @@ namespace BullsAndCows
             // case 6: correct digits, but some are correct loc, some are not, "1432"-"2A2B"
             // case 6: all wrong, "5678"-"0A0B"
             int bulls = 0;
+            int cows = 0;
             if (guess.Equals(secret))
             {
                 return "4A0B";
