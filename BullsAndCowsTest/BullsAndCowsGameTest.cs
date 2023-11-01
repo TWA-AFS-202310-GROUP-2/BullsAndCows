@@ -54,6 +54,25 @@ namespace BullsAndCowsTest
         }
 
         [Theory]
+        [InlineData("5678")]
+        [InlineData("8976")]
+        public void Should_return_0A0B_when_guess_given_no_position_and_no_number_are_right(string guessNumber)
+        {
+            //given
+            //string guessNumber = "1287";
+
+            //when
+            var mockSecretGenerator = new Mock<SecretGenerator>();
+            mockSecretGenerator.Setup(ms => ms.GenerateSecret()).Returns("1234");
+            var game = new BullsAndCowsGame(mockSecretGenerator.Object);
+
+            var res = game.Guess(guessNumber);
+
+            //then
+            Assert.Equal("0A0B", res);
+        }
+
+        [Theory]
         [InlineData("1562")]
         [InlineData("1527")]
         public void Should_return_1A1B_when_guess_given_some_position_and_some_number_are_right(string guessNumber)
@@ -71,5 +90,6 @@ namespace BullsAndCowsTest
             //then
             Assert.Equal("1A1B", res);
         }
+
     }
 }
