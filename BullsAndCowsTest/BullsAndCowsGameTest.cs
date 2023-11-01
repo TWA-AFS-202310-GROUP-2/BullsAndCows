@@ -28,5 +28,19 @@ namespace BullsAndCowsTest
 
             Assert.Equal("4A0B",guessResult);
         }
+
+        [Fact]
+        public void Should_return_2A0B_when_guess_given_2_correctlocation_0_correcnumber()
+        {
+            string guessNumber = "1256";
+            string secret = "1234";
+            var mockSecretObject = new Mock<SecretGenerator>();
+            mockSecretObject.Setup(generator => generator.GenerateSecret()).Returns(secret);
+            var game = new BullsAndCowsGame(mockSecretObject.Object);
+
+            string guessResult = game.Guess(guessNumber);
+
+            Assert.Equal("2A0B", guessResult);
+        }
     }
 }
