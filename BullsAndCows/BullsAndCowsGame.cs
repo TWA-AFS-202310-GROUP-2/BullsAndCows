@@ -16,12 +16,20 @@ namespace BullsAndCows
 
         public string Guess(string guess)
         {
+            int a=0, b=0;
             if (guess.Equals(secret))
             {
                 return "4A0B";
             }
 
-            return string.Empty;
+            for (int i=0;i<guess.Length;i++)
+            {
+                if (guess[i] == secret[i])
+                {
+                    a++;
+                }
+            }
+            return $"{a}A0B";
         }
     }
 }
