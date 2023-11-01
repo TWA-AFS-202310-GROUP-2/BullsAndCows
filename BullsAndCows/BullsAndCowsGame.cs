@@ -29,7 +29,7 @@ namespace BullsAndCows
                 {
                     bulls++;
                 }
-                else if (guess.IndexOf(secret[i]) > 0)
+                else if (guess.IndexOf(secret[i]) >= 0)
                 {
                     cows++;
                 }
