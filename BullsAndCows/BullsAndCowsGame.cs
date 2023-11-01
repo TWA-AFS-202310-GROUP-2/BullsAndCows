@@ -28,7 +28,7 @@ namespace BullsAndCows
                 {
                     a++;
                 }
-                else if (secret.IndexOf(guess[i])!=-1)
+                else if (secret.IndexOf(guess[i])!=-1) 
                 {
                     b++;
                 }
