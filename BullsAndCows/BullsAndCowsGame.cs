@@ -28,8 +28,12 @@ namespace BullsAndCows
                 {
                     a++;
                 }
+                else if (secret.IndexOf(guess[i])!=-1)
+                {
+                    b++;
+                }
             }
-            return $"{a}A0B";
+            return $"{a}A{b}B";
         }
     }
 }
