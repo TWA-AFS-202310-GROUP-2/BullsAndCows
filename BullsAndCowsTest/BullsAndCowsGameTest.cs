@@ -93,7 +93,7 @@ namespace BullsAndCowsTest
 
         [Theory]
         [InlineData("4321")]
-        public void Should_return_0A4B_when_guess_given_some_position_and_some_number_are_right(string guessNumber)
+        public void Should_return_0A4B_when_guess_given_no_position_but_all_number_are_right(string guessNumber)
         {
             //given
             //string guessNumber = "1287";
