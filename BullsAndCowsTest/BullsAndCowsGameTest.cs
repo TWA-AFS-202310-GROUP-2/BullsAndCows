@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using System.Linq;
 using BullsAndCows;
+using BullsAndCowsRunner;
 using Xunit;
 
 namespace BullsAndCowsTest
@@ -67,6 +69,31 @@ namespace BullsAndCowsTest
             var secretGenerator = new SecretGenerator();
             var secret = secretGenerator.GenerateSecret();
             Assert.Equal(4, secret.Split(" ").Distinct().Count());
+        }
+
+        [Fact]
+        public void Should_Run_Main_And_End_Game_After_6_Guesses()
+        {
+            var mockSecretGenerator = new MockSecretGenerator();
+            // Simulate user input
+            string userInput = "1243\n5678\n9101\n2345\n6789\n3456\n";
+            StringReader stringReader = new StringReader(userInput);
+            Console.SetIn(stringReader);
+
+            // Capture console output
+            StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            // Run the runGame method
+            Program.RunGame(mockSecretGenerator);
+
+            // Capture the output and reset the console
+            string output = stringWriter.ToString();
+            Console.SetIn(Console.In);
+            Console.SetOut(Console.Out);
+
+            // Assert that the game ends after 6 guesses
+            Assert.Contains("Game Over", output);
         }
     }
 

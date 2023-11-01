@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BullsAndCows\BullsAndCows.csproj" />
+    <ProjectReference Include="..\BullsAndCowsRunner\BullsAndCowsRunner.csproj" />
   </ItemGroup>
 
 </Project>
