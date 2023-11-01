@@ -44,8 +44,8 @@ namespace BullsAndCowsTest
         }
 
         [Theory]
-        [InlineData("1256")]
-        public void Should_return_2A0B_when_guess_given_2_correctlocation_0_correcnumber(string guessNumber)
+        [InlineData("4321")]
+        public void Should_return_0A4B_when_guess_given_0_correctlocation_4_correcnumber(string guessNumber)
         {
             string secret = "1234";
             var mockSecretObject = new Mock<SecretGenerator>();
@@ -54,7 +54,7 @@ namespace BullsAndCowsTest
 
             string guessResult = game.Guess(guessNumber);
 
-            Assert.Equal("2A0B", guessResult);
+            Assert.Equal("0A4B", guessResult);
         }
 
         [Theory]
@@ -72,6 +72,21 @@ namespace BullsAndCowsTest
         }
 
         [Theory]
+        [InlineData("1256")]
+        public void Should_return_2A0B_when_guess_given_2_correctlocation_0_correcnumber(string guessNumber)
+        {
+            string secret = "1234";
+            var mockSecretObject = new Mock<SecretGenerator>();
+            mockSecretObject.Setup(generator => generator.GenerateSecret()).Returns(secret);
+            var game = new BullsAndCowsGame(mockSecretObject.Object);
+
+            string guessResult = game.Guess(guessNumber);
+
+            Assert.Equal("2A0B", guessResult);
+        }
+
+
+        [Theory]
         [InlineData("1562")]
         public void Should_return_1A1B_when_guess_given_1_correctlocation_1_correcnumber(string guessNumber)
         {
@@ -83,6 +98,20 @@ namespace BullsAndCowsTest
             string guessResult = game.Guess(guessNumber);
 
             Assert.Equal("1A1B", guessResult);
+        }
+
+        [Theory]
+        [InlineData("5612")]
+        public void Should_return_0A2B_when_guess_given_0_correctlocation_2_correcnumber(string guessNumber)
+        {
+            string secret = "1234";
+            var mockSecretObject = new Mock<SecretGenerator>();
+            mockSecretObject.Setup(generator => generator.GenerateSecret()).Returns(secret);
+            var game = new BullsAndCowsGame(mockSecretObject.Object);
+
+            string guessResult = game.Guess(guessNumber);
+
+            Assert.Equal("0A2B", guessResult);
         }
     }
 }
