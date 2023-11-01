@@ -8,6 +8,7 @@ namespace BullsAndCowsRunner
         public static void Main(string[] args)
         {
             SecretGenerator secretGenerator = new SecretGenerator();
+
             BullsAndCowsGame game = new BullsAndCowsGame(secretGenerator);
             while (game.CanContinue)
             {
