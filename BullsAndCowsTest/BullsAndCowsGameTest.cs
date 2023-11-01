@@ -48,6 +48,16 @@ namespace BullsAndCowsTest
             var result = game.Guess(guess);
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void Should_end_game_after_correct_guess()
+        {
+            var mockSecretGenerator = new MockSecretGenerator();
+            var game = new BullsAndCowsGame(mockSecretGenerator);
+            var result = game.Guess("1234");
+            Assert.Equal("4A0B", result);
+            Assert.False(game.CanContinue);
+        }
     }
 
     public class MockSecretGenerator : SecretGenerator
