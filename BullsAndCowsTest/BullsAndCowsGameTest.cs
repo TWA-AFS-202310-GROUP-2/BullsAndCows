@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using BullsAndCows;
 using Xunit;
 
@@ -57,6 +59,14 @@ namespace BullsAndCowsTest
             var result = game.Guess("1234");
             Assert.Equal("4A0B", result);
             Assert.False(game.CanContinue);
+        }
+
+        [Fact]
+        public void Should_return_4_digits_without_duplicate()
+        {
+            var secretGenerator = new SecretGenerator();
+            var secret = secretGenerator.GenerateSecret();
+            Assert.Equal(4, secret.Split(" ").Distinct().Count());
         }
     }
 
