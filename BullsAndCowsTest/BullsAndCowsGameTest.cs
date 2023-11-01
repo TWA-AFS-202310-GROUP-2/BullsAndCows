@@ -64,5 +64,24 @@ namespace BullsAndCowsTest
 
             Assert.Equal("0A0B", result);
         }
+
+        [Theory]
+        [InlineData("4321")]
+        [InlineData("3421")]
+        [InlineData("3412")]
+        [InlineData("4312")]
+        public void Should_return_0A4B_when_guess_given_guess_number_and_secret_are_same(string givenNumber)
+        {
+            string secret = "1234";
+
+            Mock<SecretGenerator> mockedSecretGenerator = new Mock<SecretGenerator>();
+            mockedSecretGenerator.Setup(generator => generator.GenerateSecret()).Returns(secret);
+
+            var game = new BullsAndCowsGame(mockedSecretGenerator.Object);
+
+            string result = game.Guess(givenNumber);
+
+            Assert.Equal("0A4B", result);
+        }
     }
 }
