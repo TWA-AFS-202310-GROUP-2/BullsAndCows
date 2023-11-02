@@ -1,6 +1,9 @@
-using BullsAndCows;
+﻿using BullsAndCows;
 using Moq;
+using System.IO;
+using System;
 using Xunit;
+using BullsAndCowsRunner;
 
 namespace BullsAndCowsTest
 {
@@ -143,6 +146,46 @@ namespace BullsAndCowsTest
 
             //then
             Assert.Equal("2A0B", res);
+        }
+
+        [Fact]
+        public void Should_end_game_after_6_guesses()
+        {
+            var mockSecretGenerator = new Mock<SecretGenerator>();
+            mockSecretGenerator.Setup(ms => ms.GenerateSecret()).Returns("1234");
+
+            // Simulate user input
+            //string userInput = "1243\n5678\n9101\n2345\n6789\n3456\n";
+            string userInput = "1243\n";
+            StringReader stringReader = new StringReader(userInput);
+            Console.SetIn(stringReader);
+
+            // Capture console output
+            StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            // Run the runGame method
+            Program.Run(mockSecretGenerator.Object);
+
+            // Capture the output and reset the console
+            string output = stringWriter.ToString();
+            Console.SetIn(Console.In);
+            Console.SetOut(Console.Out);
+
+            // Assert that the game ends after 6 guesses
+            Assert.Contains("Game Over", output);
+        }
+
+        [Theory]
+        [InlineData("2399", "Invalid input. Please enter a 4-digit number.")] // 重复数字
+        [InlineData("b90d", "Invalid input. Please enter a 4-digit number.")] // 非数字
+        [InlineData("123", "Invalid input. Please enter a 4-digit number.")] // 少于4位
+        public void Should_return_error_message_when_guess_given_invalid_input(string input, string expected)
+        {
+            var secretGenerator = new SecretGenerator();
+            var game = new BullsAndCowsGame(secretGenerator);
+            var result = game.Guess(input);
+            Assert.Equal(expected, result);
         }
     }
 }

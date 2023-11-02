@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace BullsAndCows
 {
@@ -17,7 +18,9 @@ namespace BullsAndCows
 
         public string Guess(string guess)
         {
-            if (guess.Length != 4 || !int.TryParse(guess, out _))
+            Console.WriteLine(1234);
+            Console.WriteLine(guess);
+            if (guess.Length != 4 || !int.TryParse(guess, out _) || guess.Distinct().ToArray().Length < 4)
             {
                 return "Invalid input. Please enter a 4-digit number.";
             }

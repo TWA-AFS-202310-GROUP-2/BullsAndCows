@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using BullsAndCows;
 
 namespace BullsAndCowsRunner
@@ -8,6 +9,11 @@ namespace BullsAndCowsRunner
         public static void Main(string[] args)
         {
             SecretGenerator secretGenerator = new SecretGenerator();
+            Program.Run(secretGenerator);
+        }
+
+        public static void Run(SecretGenerator secretGenerator)
+        {
             BullsAndCowsGame game = new BullsAndCowsGame(secretGenerator);
             Console.WriteLine("Welcome to Bulls and Cows! Try to guess the 4-digit secret number.");
 
