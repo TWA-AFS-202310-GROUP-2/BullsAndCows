@@ -6,6 +6,7 @@ namespace BullsAndCows
     {
         private readonly SecretGenerator secretGenerator;
         private readonly string secret;
+        private int attemps = 0;
         public BullsAndCowsGame(SecretGenerator secretGenerator)
         {
             this.secretGenerator = secretGenerator;
@@ -16,10 +17,12 @@ namespace BullsAndCows
 
         public string Guess(string guess)
         {
-            if (this.secret == guess)
+            if (guess.Length != 4 || !int.TryParse(guess, out _))
             {
-                return "4A0B";
+                return "Invalid input. Please enter a 4-digit number.";
             }
+
+            attemps++;
 
             int bulls = 0;
             int cows = 0;
